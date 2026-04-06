@@ -1,0 +1,75 @@
+
+/* Retina Scanner Styles */
+.scanner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 200px;
+}
+
+.scanner-eye {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 4px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.1);
+  transition: all 0.5s ease;
+}
+
+.scanner-iris {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-blue) 0%, transparent 80%);
+  position: relative;
+  animation: pulse 2s infinite alternate;
+}
+
+.scanner-laser {
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background: var(--success);
+  box-shadow: 0 0 15px var(--success), 0 0 30px var(--success);
+  opacity: 0;
+}
+
+.scanner-eye.scanning .scanner-laser {
+  opacity: 1;
+  animation: scan 2.5s ease-in-out infinite;
+}
+
+.scanner-eye.scanning {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 40px rgba(0, 210, 255, 0.4);
+}
+
+.scanner-eye.success {
+  border-color: var(--success);
+  box-shadow: 0 0 50px rgba(0, 230, 118, 0.6);
+}
+
+.scanner-eye.success .scanner-iris {
+  background: radial-gradient(circle, var(--success) 0%, transparent 80%);
+  animation: none;
+  transform: scale(1.2);
+}
+
+@keyframes scan {
+  0% { top: -10%; }
+  50% { top: 110%; }
+  100% { top: -10%; }
+}
+
+@keyframes pulse {
+  from { transform: scale(0.9); opacity: 0.7; }
+  to { transform: scale(1.1); opacity: 1; }
+}

@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StableBridge | Remittance Portal</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <!-- Background Effects -->
+      <div class="glow-orb orb-1"></div>
+      <div class="glow-orb orb-2"></div>
+      
+      <main class="container">
+        
+        <!-- Header -->
+        <header class="header">
+          <h1>StableBridge</h1>
+          <p class="subtitle" id="header-sub">Next-Gen Cross-Border Settlement</p>
+        </header>
+
+        <!-- VIEW 0: LANDING PAGE -->
+        <section id="view-landing" class="view-section active">
+          <div class="landing-hero">
+            <h1 class="landing-title">Settle Cross-Border in <span class="gradient-text">Seconds</span></h1>
+            <p class="landing-subtitle">Institutional-grade stablecoin routing infrastructure. Bypass massive 5% bank FX spreads and settle globally for less than 0.5% utilizing Layer 2 network liquidity.</p>
+            <div style="margin-bottom: 3rem;">
+              <button class="primary-btn landing-cta" id="get-started-btn" style="box-shadow: 0 15px 30px rgba(0,210,255,0.3); border: 1px solid rgba(255,255,255,0.1);">Get Started Now</button>
+            </div>
+            
+            <!-- Generated Premium Hero -->
+            <div class="hero-image-wrapper">
+              <img src="/hero.png" alt="StableBridge Technology" class="hero-image" />
+            </div>
+          </div>
+
+          <div class="landing-features" style="margin-top: -3rem; position: relative; z-index: 2;">
+            <div class="feature-box">
+              <h3>⚡ 60s Settlement</h3>
+              <p>Forget SWIFT. Our USDC/PYUSD rails settle globally on Polygon, Solana, or Stellar in seconds.</p>
+            </div>
+            <div class="feature-box">
+              <h3>🛡️ 100% Compliant</h3>
+              <p>Automated FATF Travel Rule verification and real-time OFAC/AML screening built-in.</p>
+            </div>
+            <div class="feature-box">
+              <h3>💰 Guaranteed Rates</h3>
+              <p>Our FX Oracle locks in the best CEX/DEX aggregate rate, automatically protecting against slippage.</p>
+            </div>
+          </div>
+
+          <div class="landing-testimonials">
+            <h2 style="text-align: center; margin-bottom: 3rem; font-weight: 700; letter-spacing: -0.5px;">Loved by Global Builders</h2>
+            <div class="testimonial-grid">
+              <div class="testimonial-card glass-card">
+                <p class="quote">"We used to lose 4.5% to hidden bank fees paying our developers in India. StableBridge dropped that to 0.46%. It’s a total game-changer."</p>
+                <div class="testimonial-author">
+                  <img src="https://i.pravatar.cc/150?img=47" alt="Sarah J" class="author-avatar" />
+                  <div class="author-info">
+                    <span class="author-name">Sarah J.</span>
+                    <span class="author-title">CTO at TechFlow</span>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-card glass-card">
+                <p class="quote">"The real-time camera KYC verification is incredibly smooth. My relatives in the Philippines received their funds before I even closed the app."</p>
+                <div class="testimonial-author">
+                  <img src="https://i.pravatar.cc/150?img=11" alt="Mark D" class="author-avatar" />
+                  <div class="author-info">
+                    <span class="author-name">Mark D.</span>
+                    <span class="author-title">Freelancer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="testimonial-card glass-card">
+                <p class="quote">"Finally, a UI that shows you exactly what the network fees are. Utter transparency and lightning fast execution."</p>
+                <div class="testimonial-author">
+                  <img src="https://i.pravatar.cc/150?img=5" alt="Elena R" class="author-avatar" />
+                  <div class="author-info">
+                    <span class="author-name">Elena R.</span>
+                    <span class="author-title">Small Business Owner</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </section>
+
+        <!-- VIEW 1: LOGIN -->
+        <section id="view-login" class="view-section" style="display: none;">
+          <div class="glass-card form-container center-card">
+            <h2>Secure Login</h2>
+            <form id="login-form">
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" value="user@stablebridge.io" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" value="secret" required>
+              </div>
+              <button type="submit" class="primary-btn">
+                <span class="btn-text">Log In securely</span>
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <!-- VIEW 2: KYC Details -->
+        <section id="view-kyc" class="view-section" style="display: none;">
+          <div class="glass-card form-container center-card">
+            <h2>Complete Your KYC</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.9rem;">
+              As per FATF Travel Rule regulations, we need your verifying information before sending funds globally.
+            </p>
+            <form id="kyc-form">
+              <div class="form-group">
+                <label for="kyc-name">Full Legal Name</label>
+                <input type="text" id="kyc-name" placeholder="John Doe" required>
+              </div>
+              <div class="form-row">
+                <div class="form-group half">
+                  <label for="kyc-dob">Date of Birth</label>
+                  <input type="date" id="kyc-dob" required>
+                </div>
+                <div class="form-group half">
+                  <label for="kyc-nationality">Nationality</label>
+                  <select id="kyc-nationality">
+                    <option value="US">🇺🇸 United States</option>
+                    <option value="IN">🇮🇳 India</option>
+                    <option value="GB">🇬🇧 United Kingdom</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="kyc-id">National ID / SSN</label>
+                <input type="text" id="kyc-id" placeholder="XXX-XX-XXXX" required>
+              </div>
+              <button type="submit" class="primary-btn">
+                <span class="btn-text">Proceed to Biometrics</span>
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <!-- VIEW 2.5: RETINA SCANNER (WEBCAM) -->
+        <section id="view-retina" class="view-section" style="display: none;">
+          <div class="glass-card form-container center-card" style="text-align: center; padding: 4rem 2rem;">
+            <h2 style="margin-bottom: 2rem;">Biometric Authentication</h2>
+            
+            <div class="scanner-container">
+              <div class="scanner-eye" id="camera-border">
+                <video id="webcam-feed" autoplay playsinline></video>
+                <div class="scanner-laser"></div>
+              </div>
+            </div>
+            
+            <p id="scanner-text" style="color: var(--accent-blue); margin-top: 2rem; font-weight: 600; font-size: 1.1rem; letter-spacing: 2px;">
+              REQUESTING CAMERA ACCESS...
+            </p>
+          </div>
+        </section>
+
+        <!-- VIEW 3: DASHBOARD -->
+        <section id="view-dashboard" class="view-section" style="display: none;">
+          <!-- TABS -->
+          <div class="dash-tabs" style="position: relative;">
+            <button class="tab-btn active" id="tab-transfer">Make Transfer</button>
+            <button class="tab-btn" id="tab-history">Transaction History</button>
+            <button class="tab-btn" id="tab-market">Market Rates</button>
+            
+            <button id="reset-demo-btn" style="position: absolute; right: 0; background: rgba(255,50,50,0.2); color: #ff5252; border: 1px solid #ff5252; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer;">
+              Reset Data
+            </button>
+          </div>
+
+          <!-- TAB CONTENT 1: TRANSFER MAP -->
+          <div id="panel-transfer" class="tab-panel active">
+            <div class="content-wrapper">
+              <!-- Transfer Input Form -->
+              <div class="glass-card form-container">
+                <h2>New Transfer</h2>
+                <form id="routing-form">
+                  <div class="form-group">
+                    <label for="amount">Send Amount (USD)</label>
+                    <input type="number" id="amount" value="100.00" min="1" step="0.01" required>
+                  </div>
+  
+                  <div class="form-row">
+                    <div class="form-group half">
+                      <label for="source_currency">From</label>
+                      <select id="source_currency" disabled>
+                        <option value="USD">🇺🇸 USD</option>
+                      </select>
+                    </div>
+                    
+                    <div class="form-group half">
+                      <label for="dest_currency">To</label>
+                      <select id="dest_currency">
+                        <option value="INR">🇮🇳 INR</option>
+                        <option value="PHP">🇵🇭 PHP</option>
+                        <option value="NGN">🇳🇬 NGN</option>
+                        <option value="GBP">🇬🇧 GBP</option>
+                      </select>
+                    </div>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="recipient_bank">Recipient Bank/UPI ID</label>
+                    <input type="text" id="recipient_bank" placeholder="e.g. bob@icici or ACCT# 123..." required>
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="speed">Priority</label>
+                    <div class="radio-group" id="speed">
+                      <label class="radio-btn"><input type="radio" name="speed" value="cheapest" checked> <span>Cheapest</span></label>
+                      <label class="radio-btn"><input type="radio" name="speed" value="balanced"> <span>Balanced</span></label>
+                      <label class="radio-btn"><input type="radio" name="speed" value="fastest"> <span>Fastest</span></label>
+                    </div>
+                  </div>
+  
+                  <button type="submit" class="primary-btn" id="quote-btn">
+                    <span class="btn-text">Get Quote</span>
+                    <span class="loader" style="display: none;"></span>
+                  </button>
+                </form>
+              </div>
+  
+              <!-- Pre-Execution Results -->
+              <div class="glass-card results-container" id="quote-results" style="opacity: 0.5; pointer-events: none;">
+                <div class="result-header">
+                  <h3>Calculated Output</h3>
+                  <div class="status-badge" style="background: rgba(255,255,255,0.1);">Pending...</div>
+                </div>
+  
+                <div class="summary-stats">
+                   <div class="stat-box">
+                     <span class="stat-label">You Send</span>
+                     <strong class="stat-val" id="quote-send">$0.00</strong>
+                   </div>
+                   <div class="stat-box target-box">
+                     <span class="stat-label">Recipient Gets</span>
+                     <strong class="stat-val gradient-text" id="quote-recv">--</strong>
+                   </div>
+                </div>
+                
+                <div class="meta-stats">
+                   <span><strong>Total Fee:</strong> <span id="quote-fee">$0.00</span></span>
+                   <span><strong>Est Time:</strong> <span id="quote-time">--</span></span>
+                </div>
+                
+                <!-- ACTUALLY SEND MONEY -->
+                <button class="primary-btn send-money-btn" id="send-money-btn" style="display:none; background: linear-gradient(90deg, #00e676, #1de9b6);">
+                  <span class="btn-text">💸 Send Money Now</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- TAB CONTENT 2: HISTORY -->
+          <div id="panel-history" class="tab-panel" style="display: none;">
+             <div class="glass-card" style="min-height: 500px;">
+                <div style="display: flex; justify-content: space-between; align-items:flex-end; margin-bottom: 2rem;">
+                  <h2>Transaction History</h2>
+                  <p style="font-size: 0.9rem; color: var(--text-secondary);">Showing 100% transparent fee breakdowns</p>
+                </div>
+                
+                <div id="history-list" class="history-list">
+                  <!-- JS Injects Here -->
+                  <div style="text-align:center; padding: 2rem; color: var(--text-secondary);">No past transactions found.</div>
+                </div>
+             </div>
+          </div>
+
+          <!-- TAB CONTENT 3: MARKET RATES GRAPH -->
+          <div id="panel-market" class="tab-panel" style="display: none;">
+             <div class="glass-card" style="min-height: 500px;">
+                <div style="display: flex; justify-content: space-between; align-items:flex-end; margin-bottom: 1rem;">
+                  <h2>Live FX Market Rates</h2>
+                  <select id="chart_currency" style="width: 150px; padding: 0.5rem; background: rgba(0,0,0,0.5);">
+                    <option value="INR">USD to INR</option>
+                    <option value="PHP">USD to PHP</option>
+                    <option value="NGN">USD to NGN</option>
+                  </select>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--accent-blue); margin-bottom: 2rem;">Oracle Aggregated (Last 5 Days)</p>
+                
+                <div style="position: relative; height:400px; width:100%;">
+                  <canvas id="fxChart"></canvas>
+                </div>
+             </div>
+          </div>
+        </section>
+
+        <!-- VIEW 4: EXECUTION FLOW -->
+        <section id="view-flow" class="view-section" style="display: none;">
+           <div class="glass-card flow-container center-card">
+              <h2>Executing Transaction</h2>
+              <p style="color: var(--text-secondary); margin-bottom: 2rem;">Routing via Web3 infrastructure...</p>
+              
+              <!-- Visualization Timeline -->
+              <div class="timeline" id="execution-timeline">
+                <!-- Hops injected by JS slowly -->
+              </div>
+              
+              <div id="flow-success" style="display:none; text-align: center; margin-top: 2rem;">
+                  <h3 style="color: var(--success); font-size: 2rem; margin-bottom: 1rem;">Transfer Complete!</h3>
+                  <button class="primary-btn" id="finish-btn" style="margin-top: 1rem; width: auto; padding: 0.8rem 2rem; margin: 0 auto; margin-bottom: 3rem;">Return to Dashboard</button>
+                  
+                  <div class="glass-card" style="margin-top: 2rem; padding: 2rem; display: flex; justify-content: space-around; flex-wrap: wrap; text-align: center; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05);">
+                    <div style="margin: 1rem;">
+                      <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">🇺🇸 US Global HQ</h4>
+                      <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">1 Market Street, Suite 300<br>San Francisco, CA 94105<br>United States</p>
+                    </div>
+                    <div style="margin: 1rem;">
+                      <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">🇮🇳 India Regional HQ</h4>
+                      <p style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6;">Infopark Campus, Kakkanad<br>Kochi, Kerala 682042<br>India</p>
+                    </div>
+                  </div>
+              </div>
+           </div>
+        </section>
+
+      </main>
+    </div>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
